@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="platform-definition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="parameter-definitions"/>
+        <xs:element name="entity-generation" type="type_generation-definition"/>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="newline-type" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="WINDOWS"/>
+            <xs:enumeration value="UNIX"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="uppercase-method-names" type="xs:boolean" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="db-platform-definition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="parameter-definitions"/>
+        <xs:element name="db-provider-definitions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="db-provider-definition" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="parameter-definitions"/>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="type" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:token">
+                        <xs:enumeration value="NET"/>
+                        <xs:enumeration value="OLEDB"/>
+                        <xs:enumeration value="ODBC"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="provider-assembly" type="xs:string" use="required"/>
+                  <xs:attribute name="provider-class" type="xs:string" use="required"/>
+                  <xs:attribute name="connection-string" type="xs:string" use="required"/>
+                  <xs:attribute name="sql-parameter-prefix" type="xs:string" use="optional"/>
+                  <xs:attribute name="trusted-auth" type="xs:boolean" default="false"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="script-generation" type="type_generation-definition"/>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="script-delimiter" type="xs:string" use="required"/>
+      <xs:attribute name="alternative-script-delimiter" type="xs:string" use="optional"/>
+      <xs:attribute name="script-delimiter-newline" type="xs:boolean" use="required"/>
+      <xs:attribute name="group-statements" type="xs:integer" use="required"/>
+      <xs:attribute name="foreign-key-checks-on" type="xs:string" use="optional"/>
+      <xs:attribute name="foreign-key-checks-off" type="xs:string" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="parameter-definitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="parameter-definition" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="name" type="xs:string" use="required"/>
+                <xs:attribute name="external-name" type="xs:string" use="required"/>
+                <xs:attribute name="type" use="required">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                      <xs:enumeration value="VARCHAR"/>
+                      <xs:enumeration value="PASSWORD"/>
+                      <xs:enumeration value="PATH"/>
+                      <xs:enumeration value="CLOB"/>
+                      <xs:enumeration value="INTEGER"/>
+                      <xs:enumeration value="BIT"/>
+                      <xs:enumeration value="TIMESTAMP"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="category" type="xs:string" use="required"/>
+                <xs:attribute name="description" type="xs:string" use="required"/>
+                <xs:attribute name="required" type="xs:boolean" use="optional"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="generate-file">
+    <xs:complexType>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="path" type="xs:string" use="required"/>
+      <xs:attribute name="filename" type="xs:string" use="required"/>
+      <xs:attribute name="transform" type="xs:string" use="required"/>
+      <xs:attribute name="encoding">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="ISO-8859-1"/>
+            <xs:enumeration value="UTF-8"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pventitygenerator-config">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="platforms">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="platform" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="definition-dir" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="db-platforms">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="db-platform" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="definition-dir" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="project-definition">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="parameter-definitions"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="entity-generation" type="type_generation-definition"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-settings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="parameters"/>
+        <xs:element name="entity-generation">
+          <xs:complexType>
+            <xs:complexContent>
+              <xs:extension base="type_generation"/>
+            </xs:complexContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="entity-export">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="export-entities" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="export-entity" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="entity" type="xs:string" use="required"/>
+                        <xs:attribute name="sort-no" type="xs:integer" use="required"/>
+                        <xs:attribute name="export-structure" type="xs:boolean" use="required"/>
+                        <xs:attribute name="export-data" type="xs:boolean" use="required"/>
+                        <xs:attribute name="export-drop" type="xs:boolean" use="required"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="patch-entities" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="patch-entity" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="patch-attribute" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="name" type="xs:string" use="required"/>
+                              <xs:attribute name="patch-type" type="type_PatchType" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="entity" type="xs:string" use="required"/>
+                        <xs:attribute name="patch-type" type="type_PatchType" use="required"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="platforms">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="platform" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="parameters"/>
+                    <xs:element name="entity-generation" type="type_generation"/>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="selected" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="db-platforms">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="db-platform" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="parameters"/>
+                    <xs:element name="db-providers">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="db-provider" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element ref="parameters"/>
+                              </xs:sequence>
+                              <xs:attribute name="name" type="xs:string" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="selected" type="xs:string" use="required"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="script-generation" type="type_generation"/>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="selected" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="pventitygenerator-version" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="parameters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="name" type="xs:string" use="required"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pventitygenerator-data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-settings"/>
+        <xs:element ref="db-definition"/>
+      </xs:sequence>
+      <xs:attribute name="generated-on" type="xs:dateTime" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="type_generate-file-container">
+    <xs:sequence>
+      <xs:element ref="parameter-definitions" minOccurs="0"/>
+      <xs:element ref="generate-file" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="type_generation-definition">
+    <xs:sequence>
+      <xs:element name="generate-global" type="type_generate-file-container" minOccurs="0"/>
+      <xs:element name="generate-entity" type="type_generate-file-container" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="type_generation">
+    <xs:sequence>
+      <xs:element name="generate-global" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="parameters"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="generate-entity" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="parameters"/>
+            <xs:element name="remove-constraint-messages" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="remove-constraint-message" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                          <xs:attribute name="foreign-entity" type="xs:string" use="required"/>
+                        </xs:extension>
+                      </xs:simpleContent>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="custom-create-methods" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="custom-create-method" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="method-attribute" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:attribute name="name" type="xs:string" use="required"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="name" type="xs:string" use="required"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="custom-find-methods" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="custom-find-method" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="method-attribute" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:attribute name="name" type="xs:string" use="required"/>
+                            <xs:attribute name="type" type="type_AttributeType" use="optional"/>
+                            <xs:attribute name="entity-alias" type="xs:string" use="optional"/>
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="inner-join" minOccurs="0" maxOccurs="unbounded">
+                          <xs:complexType>
+                            <xs:attribute name="entity" type="xs:string" use="required"/>
+                            <xs:attribute name="entity-alias" type="xs:string" use="optional"/>
+                            <xs:attribute name="join-expression" type="xs:string" use="required"/>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="name" type="xs:string" use="required"/>
+                      <xs:attribute name="description" type="xs:string" use="optional"/>
+                      <xs:attribute name="entity-alias" type="xs:string" use="optional"/>
+                      <xs:attribute name="where-expression" type="xs:string" use="optional"/>
+                      <xs:attribute name="order-by-expression" type="xs:string" use="optional"/>
+                      <xs:attribute name="returns-multiple" type="xs:boolean" use="required"/>
+                      <xs:attribute name="generate-test" type="xs:boolean" use="required"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="enumeration-entries" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="enumeration-entry" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                      <xs:attribute name="id" type="xs:integer" use="required"/>
+                      <xs:attribute name="identifier" type="xs:string" use="required"/>
+                      <xs:attribute name="name" type="xs:string" use="required"/>
+                      <xs:attribute name="description" type="xs:string" use="optional"/>
+                      <xs:attribute name="generate" type="xs:boolean" use="required"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="entity" type="xs:string" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="type_PatchType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="CREATE"/>
+      <xs:enumeration value="MODIFY"/>
+      <xs:enumeration value="DROP"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="db-definition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="entities">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="entity" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="attributes">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="attribute" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="name" type="xs:string" use="required"/>
+                              <xs:attribute name="type" type="type_AttributeType" use="required"/>
+                              <xs:attribute name="required" type="xs:boolean" use="required"/>
+                              <xs:attribute name="size" type="xs:integer" use="optional"/>
+                              <xs:attribute name="scale" type="xs:integer" use="optional"/>
+                              <xs:attribute name="description" type="xs:string" use="optional"/>
+                              <xs:attribute name="default-value" type="xs:string" use="optional"/>
+                              <xs:attribute name="no-unittest" type="xs:boolean" use="optional"/>
+                              <xs:attribute name="auto-increment" type="xs:boolean" use="optional"/>
+                              <xs:attribute name="deprecated" type="xs:boolean" use="optional"/>
+                              <xs:attribute name="xml-mapping" type="xs:string" use="optional"/>
+                              <xs:attribute name="search-index" type="xs:string" use="optional"/>
+                              <xs:attribute name="search-store" type="xs:string" use="optional"/>
+                              <xs:attribute name="search-embed-depth" type="xs:int" use="optional"/>
+                              <xs:attribute name="search-boost" type="xs:float" use="optional"/>
+                              <xs:attribute name="search-date-resolution" type="xs:string" use="optional"/>
+                              <xs:attribute name="search-fieldbridge" type="xs:string" use="optional"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="keys">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="primary-key">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="attribute-ref" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:attribute name="attribute" type="xs:string" use="required"/>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="name" type="xs:string" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="unique-key" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="attribute-ref" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:attribute name="attribute" type="xs:string" use="required"/>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="name" type="xs:string" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="foreign-key" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="attribute-ref">
+                                  <xs:complexType>
+                                    <xs:attribute name="attribute" type="xs:string" use="required"/>
+                                    <xs:attribute name="foreign-attribute" type="xs:string" use="required"/>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="name" type="xs:string" use="required"/>
+                              <xs:attribute name="foreign-entity" type="xs:string" use="required"/>
+                              <xs:attribute name="cascading-delete" type="xs:boolean" use="required"/>
+                              <xs:attribute name="one-to-one" type="xs:boolean" default="false"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="indexes" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="index" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="attribute-ref" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:attribute name="attribute" type="xs:string" use="required"/>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="name" type="xs:string" use="required"/>
+                              <xs:attribute name="unique" type="xs:boolean" use="required"/>
+                              <xs:attribute name="ignore-nulls" type="xs:boolean" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="description" type="xs:string"/>
+                  <xs:attribute name="hashcode" type="xs:integer"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="generated-on" type="xs:dateTime" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="type_AttributeType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="BIGINT"/>
+      <xs:enumeration value="BIT"/>
+      <xs:enumeration value="BYTE"/>
+      <xs:enumeration value="BLOB"/>
+      <xs:enumeration value="CLOB"/>
+      <xs:enumeration value="DECIMAL"/>
+      <xs:enumeration value="FLOAT"/>
+      <xs:enumeration value="ID"/>
+      <xs:enumeration value="INTEGER"/>
+      <xs:enumeration value="SMALLINT"/>
+      <xs:enumeration value="TIMESTAMP"/>
+      <xs:enumeration value="VARCHAR"/>
+      <xs:enumeration value="VSTAMP"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

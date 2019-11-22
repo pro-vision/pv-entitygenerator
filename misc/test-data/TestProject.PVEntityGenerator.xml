@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project-settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <parameters>
+    <parameter name="project-name">Test Project</parameter>
+    <parameter name="test-bit">1</parameter>
+    <parameter name="test-clob">aa</parameter>
+    <parameter name="test-integer">25</parameter>
+    <parameter name="test-password">bb</parameter>
+    <parameter name="test-path">cc</parameter>
+    <parameter name="test-varchar">dd</parameter>
+    <parameter name="test-timestamp">2004-03-01T00:00:00</parameter>
+  </parameters>
+  <entity-generation>
+    <generate-entity entity="CMBenutzer">
+      <parameters />
+      <remove-constraint-messages>
+        <remove-constraint-message foreign-entity="CMDokument">aaxx</remove-constraint-message>
+        <remove-constraint-message foreign-entity="CMLink">asfd</remove-constraint-message>
+        <remove-constraint-message foreign-entity="CMMedia">dd</remove-constraint-message>
+        <remove-constraint-message foreign-entity="CMRubrik">x</remove-constraint-message>
+      </remove-constraint-messages>
+    </generate-entity>
+    <generate-entity entity="CMBenutzerRecht">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMDokMeta_gp_Antrag">
+      <parameters>
+        <parameter name="generate-entity">0</parameter>
+        <parameter name="generate-home">0</parameter>
+      </parameters>
+    </generate-entity>
+    <generate-entity entity="CMDokMeta_gp_Pressem">
+      <parameters>
+        <parameter name="generate-entity">0</parameter>
+        <parameter name="generate-home">0</parameter>
+      </parameters>
+    </generate-entity>
+    <generate-entity entity="CMArchivEbene">
+      <parameters>
+        <parameter name="generate-enumeration">1</parameter>
+      </parameters>
+      <remove-constraint-messages>
+        <remove-constraint-message foreign-entity="CMDokument">ddd</remove-constraint-message>
+      </remove-constraint-messages>
+      <custom-create-methods>
+        <custom-create-method name="createXXX">
+          <method-attribute name="ArchivEbeneName" />
+        </custom-create-method>
+        <custom-create-method name="createYYY">
+          <method-attribute name="ArchivEbeneID" />
+          <method-attribute name="ArchivEbeneName" />
+        </custom-create-method>
+      </custom-create-methods>
+      <custom-find-methods>
+        <custom-find-method name="findByZZZ" description="dd" where-expression="(ArchivEbeneID=?) AND (ArchivEbeneName=?) AND (testint=?)" order-by-expression="bb" returns-multiple="false" generate-test="false">
+          <method-attribute name="ArchivEbeneID" />
+          <method-attribute name="ArchivEbeneName" />
+          <method-attribute name="testint" type="INTEGER" />
+          <inner-join entity="CMBenutzerRecht" entity-alias="bb" join-expression="xx=yy" />
+        </custom-find-method>
+      </custom-find-methods>
+    </generate-entity>
+    <generate-entity entity="CMBenutzer_Rolle">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMBenutzer_Vertreter">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMCounter">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMDokument">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMKompText">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMMedia_Site">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMObjekt_Schlagwort">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMKomp_Misc">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMDokumentArt">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMDokMeta_S102_Dirknd">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMDokumentTyp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMDokMeta_S441_Lokationen">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMDokMeta_MetaTest">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMDokMeta_gp_Termin">
+      <parameters>
+        <parameter name="generate-entity">0</parameter>
+        <parameter name="generate-home">0</parameter>
+      </parameters>
+    </generate-entity>
+    <generate-entity entity="CMDokumentVarianteArt">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMKomp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMKomp_Binary">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMKomp_Info">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMKomp_Link">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMKomp_Media">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMKomp_Text">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMKompBinary">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMKompTextTyp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMLink">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMLinkTyp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMLog_Suche">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMMedia">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMMediaBinary">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMMediaTyp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMMediaVariante">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMMiscKompTyp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMObjekt_Stichwort">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMObjektHistorie">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMObjektHistorieEreig">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMObjektTyp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMOnlineFormular">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMParam">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMParam_Repository">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMParam_Site">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMParam_System">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMParamTyp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMQueue_CacheManager">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMQueue_ClearCache">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMRepository">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMRepositoryFolder">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMRolle">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMRolle_BenutzerRecht">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMRubrik">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMRubrikTyp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMSchlagwort">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMSite">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMSortierungArt">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMSpellcheckDic">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMSpellcheckDic_Entry">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMSprache">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMTemplate">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMTemplate_DokTyp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMTemplateAlternativ">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMTemplateTyp">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMWorkflow">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMWorkflow_Ref">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMWorkflowActivityDef">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMWorkflowCondDef">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMWorkflowDef">
+      <parameters />
+    </generate-entity>
+    <generate-entity entity="CMWorkflowDef_Ref">
+      <parameters />
+    </generate-entity>
+  </entity-generation>
+  <entity-export>
+    <export-entities>
+      <export-entity entity="CMArchivEbene" sort-no="10" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMBenutzer" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMBenutzer_Rolle" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMBenutzer_Vertreter" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMBenutzerRecht" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMCounter" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMDokMeta_gp_Antrag" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMDokMeta_gp_Pressem" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMDokMeta_MetaTest" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMDokMeta_S102_Dirknd" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMDokMeta_S441_Lokationen" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMDokument" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMDokumentArt" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMDokumentTyp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMDokumentVarianteArt" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMKomp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMKomp_Binary" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMKomp_Info" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMKomp_Link" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMKomp_Media" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMKomp_Misc" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMKomp_Text" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMKompBinary" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMKompText" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMKompTextTyp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMLink" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMLinkTyp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMLog_Suche" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMMedia" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMMedia_Site" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMMediaBinary" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMMediaTyp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMMediaVariante" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMMiscKompTyp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMObjekt_Schlagwort" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMObjekt_Stichwort" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMObjektHistorie" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMObjektHistorieEreig" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMObjektTyp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMOnlineFormular" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMParam" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMParam_Repository" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMParam_Site" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMParam_System" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMParamTyp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMQueue_CacheManager" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMQueue_ClearCache" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMRepository" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMRepositoryFolder" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMRolle" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMRolle_BenutzerRecht" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMRubrik" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMRubrikTyp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMSchlagwort" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMSite" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMSortierungArt" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMSpellcheckDic" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMSpellcheckDic_Entry" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMSprache" sort-no="" export-structure="true" export-data="true" export-drop="true" />
+      <export-entity entity="CMTemplate" sort-no="" export-structure="true" export-data="false" export-drop="false" />
+      <export-entity entity="CMTemplate_DokTyp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMTemplateAlternativ" sort-no="" export-structure="false" export-data="true" export-drop="false" />
+      <export-entity entity="CMTemplateTyp" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMWorkflow" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMWorkflow_Ref" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMWorkflowActivityDef" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMWorkflowDef" sort-no="30" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMWorkflowDef_Ref" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMDokMeta_gp_Termin" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="CMWorkflowCondDef" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="aa" sort-no="50" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="bb" sort-no="60" export-structure="true" export-data="false" export-drop="true" />
+    </export-entities>
+  </entity-export>
+  <platforms selected="Java2">
+    <platform name="Java2">
+      <parameters>
+        <parameter name="entity-namespace">aa</parameter>
+        <parameter name="unittest-namespace">bb</parameter>
+        <parameter name="file-header">// $Header:  $
+</parameter>
+        <parameter name="generate-unittest">1</parameter>
+        <parameter name="path-entity">C:\temp\generate</parameter>
+        <parameter name="generate-comments">1</parameter>
+        <parameter name="path-unittest">C:\temp\generate</parameter>
+      </parameters>
+      <entity-generation xsi:type="projectsettingsEntitygeneration">
+        <generate-entity entity="CMBenutzer">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMBenutzerRecht">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMDokMeta_gp_Antrag">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMDokMeta_gp_Pressem">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMArchivEbene">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMBenutzer_Rolle">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMBenutzer_Vertreter">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMCounter">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMDokument">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMKompText">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMMedia_Site">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMObjekt_Schlagwort">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMKomp_Misc">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMDokumentArt">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMDokMeta_S102_Dirknd">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMDokumentTyp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMDokMeta_S441_Lokationen">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMDokMeta_MetaTest">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMDokMeta_gp_Termin">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMDokumentVarianteArt">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMKomp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMKomp_Binary">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMKomp_Info">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMKomp_Link">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMKomp_Media">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMKomp_Text">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMKompBinary">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMKompTextTyp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMLink">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMLinkTyp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMLog_Suche">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMMedia">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMMediaBinary">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMMediaTyp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMMediaVariante">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMMiscKompTyp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMObjekt_Stichwort">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMObjektHistorie">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMObjektHistorieEreig">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMObjektTyp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMOnlineFormular">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMParam">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMParam_Repository">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMParam_Site">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMParam_System">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMParamTyp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMQueue_CacheManager">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMQueue_ClearCache">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMRepository">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMRepositoryFolder">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMRolle">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMRolle_BenutzerRecht">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMRubrik">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMRubrikTyp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMSchlagwort">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMSite">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMSortierungArt">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMSpellcheckDic">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMSpellcheckDic_Entry">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMSprache">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMTemplate">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMTemplate_DokTyp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMTemplateAlternativ">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMTemplateTyp">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMWorkflow">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMWorkflow_Ref">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMWorkflowActivityDef">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMWorkflowCondDef">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMWorkflowDef">
+          <parameters />
+        </generate-entity>
+        <generate-entity entity="CMWorkflowDef_Ref">
+          <parameters />
+        </generate-entity>
+      </entity-generation>
+    </platform>
+  </platforms>
+  <db-platforms selected="SQLServer">
+    <db-platform name="SQLServer">
+      <parameters>
+        <parameter name="script-path">C:\temp\generate</parameter>
+      </parameters>
+      <db-providers selected="SQL Server .NET">
+        <db-provider name="SQL Server .NET">
+          <parameters>
+            <parameter name="database">aa</parameter>
+            <parameter name="password">asdf</parameter>
+            <parameter name="server">cc</parameter>
+            <parameter name="user">dd</parameter>
+          </parameters>
+        </db-provider>
+        <db-provider name="SQL Server OLE DB">
+          <parameters>
+            <parameter name="database">ee</parameter>
+            <parameter name="password">ff</parameter>
+            <parameter name="server">gg</parameter>
+            <parameter name="user">hh</parameter>
+          </parameters>
+        </db-provider>
+      </db-providers>
+      <script-generation />
+    </db-platform>
+    <db-platform name="Oracle">
+      <parameters>
+        <parameter name="script-path">C:\temp\generate</parameter>
+      </parameters>
+      <db-providers selected="Oracle .NET">
+        <db-provider name="Oracle .NET">
+          <parameters />
+        </db-provider>
+      </db-providers>
+      <script-generation />
+    </db-platform>
+  </db-platforms>
+</project-settings>

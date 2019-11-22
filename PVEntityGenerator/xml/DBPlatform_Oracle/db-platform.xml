@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db-platform-definition name="Oracle" script-delimiter=";" alternative-script-delimiter="/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\PVEntityGenerator-schema.xsd" script-delimiter-newline="false" group-statements="1">
+  <parameter-definitions>
+    <parameter-definition name="unicode" type="BIT" category="Script generation" external-name="Unicode" description="Generate unicode text fields." required="1">true</parameter-definition>
+    <parameter-definition name="grant-to" type="VARCHAR" category="Script generation" external-name="Grant to" description="Generate grants to user/group."/>
+    <parameter-definition name="cascading-deletes" type="BIT" category="Script generation" external-name="Cascading deletes" description="Generate cascading delete in database (not recommended).">false</parameter-definition>
+    <parameter-definition name="ignore-self-references" type="BIT" category="Script generation" external-name="Ignore Self-References" description="Ignore self-referencing foreign key constraints on tables. If set to true, smart references on data transfer is not needed.">false</parameter-definition>
+    <parameter-definition name="ignore-unique-indexes" type="BIT" category="Script generation" external-name="Ignore unique indexes" description="Do not generate indexes with UNIQUE keyword, even if defined as unique in database definition (solves problem with automated unit tests).">false</parameter-definition>
+    <parameter-definition name="oracle-8i" type="BIT" category="Script generation" external-name="Oracle 8i" description="Generate Oracle 8i-compatible (otherwise Oracle 9i and up).">false</parameter-definition>
+    <parameter-definition name="name-max-length" type="INTEGER" category="Script generation" external-name="Name max. length" description="Maximum length for generated oracle names.">30</parameter-definition>
+    <parameter-definition name="smart-references" type="BIT" category="Data transfer" external-name="Smart references" description="Resolve cyclic references on data transfer.">true</parameter-definition>
+    <parameter-definition name="script-path" type="PATH" category="Paths" external-name="Script path" description="Generation path for scripts."/>
+  </parameter-definitions>
+  <db-provider-definitions>
+    <db-provider-definition name="Oracle .NET" type="NET" provider-assembly="Oracle.DataAccess" provider-class="Oracle.DataAccess.Client.OracleConnection" connection-string="Data Source={server}/{service-name};User ID={user};Password={password};" sql-parameter-prefix=":">
+      <parameter-definitions>
+        <parameter-definition name="server" type="VARCHAR" category="Connection" external-name="Server" description="Oracle server." required="1"/>
+        <parameter-definition name="service-name" type="VARCHAR" category="Connection" external-name="Service name" description="Oracle service name (on destination server)." required="1"/>
+        <parameter-definition name="user" type="VARCHAR" category="Connection" external-name="User" description="Login user name." required="1"/>
+        <parameter-definition name="password" type="PASSWORD" category="Connection" external-name="Password" description="Login password." required="0"/>
+      </parameter-definitions>
+    </db-provider-definition>
+    <db-provider-definition name="Oracle OLE DB" type="OLEDB" provider-assembly="System.Data" provider-class="System.Data.OleDb.OleDbConnection" connection-string="Provider=OraOLEDB.Oracle.1;Data Source={server}/{service-name};User ID={user};Password={password};">
+      <parameter-definitions>
+        <parameter-definition name="server" type="VARCHAR" category="Connection" external-name="Server" description="Oracle server." required="1"/>
+        <parameter-definition name="service-name" type="VARCHAR" category="Connection" external-name="Service name" description="Oracle service name (on destination server)." required="1"/>
+        <parameter-definition name="user" type="VARCHAR" category="Connection" external-name="User" description="Login user name." required="1"/>
+        <parameter-definition name="password" type="PASSWORD" category="Connection" external-name="Password" description="Login password." required="0"/>
+      </parameter-definitions>
+    </db-provider-definition>
+  </db-provider-definitions>
+  <script-generation>
+    <generate-global>
+      <generate-file name="entity-storedproc" path="{$script-path}" filename="{$project-name}_StoredProc_Oracle.sql" transform="global_storedproc-script.xsl"/>
+      <generate-file name="entity-create" path="{$script-path}" filename="{$project-name}_Create_Oracle.sql" transform="global_create-script.xsl"/>
+      <generate-file name="entity-patch" path="{$script-path}" filename="{$project-name}_Patch_Oracle.sql" transform="global_patch-script.xsl"/>
+    </generate-global>
+  </script-generation>
+</db-platform-definition>

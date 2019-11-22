@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project-settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" pventitygenerator-version="4.0.0.0">
+  <parameters>
+    <parameter name="project-name" />
+  </parameters>
+  <entity-generation>
+    <generate-entity entity="PVCounter">
+      <parameters>
+        <parameter name="generate-entity">false</parameter>
+        <parameter name="generate-getter">true</parameter>
+        <parameter name="generate-setter">true</parameter>
+        <parameter name="generate-removecheck">true</parameter>
+        <parameter name="generate-home">false</parameter>
+        <parameter name="generate-default-create">true</parameter>
+        <parameter name="generate-default-create-object">true</parameter>
+        <parameter name="generate-findbyprimarykey">true</parameter>
+        <parameter name="generate-enumeration">false</parameter>
+      </parameters>
+    </generate-entity>
+    <generate-entity entity="PVTMP_TestSuite">
+      <parameters>
+        <parameter name="generate-entity">true</parameter>
+        <parameter name="generate-getter">true</parameter>
+        <parameter name="generate-setter">true</parameter>
+        <parameter name="generate-removecheck">true</parameter>
+        <parameter name="generate-home">true</parameter>
+        <parameter name="generate-default-create">true</parameter>
+        <parameter name="generate-default-create-object">true</parameter>
+        <parameter name="generate-findbyprimarykey">true</parameter>
+        <parameter name="generate-enumeration">false</parameter>
+      </parameters>
+      <custom-create-methods>
+        <custom-create-method name="create">
+          <method-attribute name="Description" />
+          <method-attribute name="ColVarchar" />
+          <method-attribute name="ColInteger" />
+        </custom-create-method>
+      </custom-create-methods>
+      <custom-find-methods>
+        <custom-find-method name="findByTest1" description="" where-expression="(Description=?) AND (ColVarchar=?) AND (ColBit=?)" order-by-expression="" returns-multiple="true" generate-test="true">
+          <method-attribute name="Description" />
+          <method-attribute name="ColVarchar" />
+          <method-attribute name="ColBit" />
+        </custom-find-method>
+      </custom-find-methods>
+    </generate-entity>
+  </entity-generation>
+  <entity-export>
+    <export-entities>
+      <export-entity entity="PVCounter" sort-no="10" export-structure="true" export-data="true" export-drop="false" />
+      <export-entity entity="PVTMP_TestSuite" sort-no="20" export-structure="true" export-data="true" export-drop="false" />
+    </export-entities>
+  </entity-export>
+  <platforms selected="NET">
+    <platform name="NET">
+      <parameters>
+        <parameter name="entity-namespace" />
+        <parameter name="unittest-namespace" />
+        <parameter name="getsetmethods">false</parameter>
+        <parameter name="path-entity">D:\Temp\PVEntityGenerator.NET\NET</parameter>
+        <parameter name="path-unittest">D:\Temp\PVEntityGenerator.NET\NET</parameter>
+        <parameter name="file-header">/*
+  $Header: $
+  $History: $
+ */</parameter>
+        <parameter name="generate-comments">true</parameter>
+        <parameter name="generate-unittest">true</parameter>
+        <parameter name="unittest-baseclass">PVTestCase</parameter>
+        <parameter name="custom-class-extension-tag-start">//+++ Custom class extensions START +++
+</parameter>
+        <parameter name="custom-class-extension-tag-end">//+++ Custom class extensions END +++
+</parameter>
+      </parameters>
+      <entity-generation>
+        <generate-entity entity="PVCounter">
+          <parameters>
+            <parameter name="generate-serializable">true</parameter>
+          </parameters>
+        </generate-entity>
+        <generate-entity entity="PVTMP_TestSuite">
+          <parameters>
+            <parameter name="generate-serializable">true</parameter>
+          </parameters>
+        </generate-entity>
+      </entity-generation>
+    </platform>
+  </platforms>
+  <db-platforms selected="MySQL">
+    <db-platform name="SQLServer">
+      <parameters>
+        <parameter name="unicode">true</parameter>
+        <parameter name="grant-to">public</parameter>
+        <parameter name="cascading-deletes">false</parameter>
+        <parameter name="smart-references">true</parameter>
+        <parameter name="script-path">P:\Intern\PVFramework\Diverses\Datenbank</parameter>
+      </parameters>
+      <db-providers selected="SQL Server .NET">
+        <db-provider name="SQL Server .NET">
+          <parameters>
+            <parameter name="server" />
+            <parameter name="database" />
+            <parameter name="user" />
+            <parameter name="password" />
+          </parameters>
+        </db-provider>
+        <db-provider name="SQL Server OLE DB">
+          <parameters>
+            <parameter name="server" />
+            <parameter name="database" />
+            <parameter name="user" />
+            <parameter name="password" />
+            <parameter name="os-auth">false</parameter>
+          </parameters>
+        </db-provider>
+      </db-providers>
+      <script-generation />
+    </db-platform>
+    <db-platform name="MySQL">
+      <parameters>
+        <parameter name="unicode">true</parameter>
+        <parameter name="grant-to" />
+        <parameter name="cascading-deletes">false</parameter>
+        <parameter name="smart-references">true</parameter>
+        <parameter name="script-path" />
+        <parameter name="name-max-length">64</parameter>
+      </parameters>
+      <db-providers selected="MySQL .NET">
+        <db-provider name="MySQL OLE DB">
+          <parameters>
+            <parameter name="server">localhost</parameter>
+            <parameter name="database">test</parameter>
+            <parameter name="user">root</parameter>
+            <parameter name="password" />
+          </parameters>
+        </db-provider>
+        <db-provider name="MySQL .NET">
+          <parameters>
+            <parameter name="server">localhost</parameter>
+            <parameter name="database">pventitygenerator</parameter>
+            <parameter name="user">root</parameter>
+            <parameter name="password" />
+            <parameter name="os-auth">false</parameter>
+          </parameters>
+        </db-provider>
+      </db-providers>
+      <script-generation />
+    </db-platform>
+    <db-platform name="Oracle">
+      <parameters>
+        <parameter name="unicode">true</parameter>
+        <parameter name="grant-to" />
+        <parameter name="cascading-deletes">false</parameter>
+        <parameter name="oracle-8i">false</parameter>
+        <parameter name="name-max-length">30</parameter>
+        <parameter name="smart-references">true</parameter>
+        <parameter name="script-path" />
+      </parameters>
+      <db-providers>
+        <db-provider name="Oracle .NET">
+          <parameters>
+            <parameter name="service-name" />
+            <parameter name="user" />
+            <parameter name="password" />
+          </parameters>
+        </db-provider>
+        <db-provider name="Oracle OLE DB">
+          <parameters>
+            <parameter name="service-name" />
+            <parameter name="user" />
+            <parameter name="password" />
+          </parameters>
+        </db-provider>
+      </db-providers>
+      <script-generation />
+    </db-platform>
+  </db-platforms>
+</project-settings>

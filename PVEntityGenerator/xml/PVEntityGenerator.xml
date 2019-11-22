@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $URL$ -->
+<!-- $Id$ -->
+
+<pventitygenerator-config
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema\PVEntityGenerator-schema.xsd">
+
+  <platforms>
+
+    <platform name="Java2" definition-dir="Platform_Java2"/>
+    <platform name="Java5" definition-dir="Platform_Java5"/>
+    <platform name="Java5JPA" definition-dir="Platform_Java5JPA"/>
+    <platform name="NET" definition-dir="Platform_NET"/>
+    <platform name="NET20" definition-dir="Platform_NET20"/>
+
+  </platforms>
+
+  <db-platforms>
+
+    <db-platform name="SQLServer" definition-dir="DBPlatform_SQLServer"/>
+    <db-platform name="Oracle" definition-dir="DBPlatform_Oracle"/>
+    <db-platform name="MySQL" definition-dir="DBPlatform_MySQL"/>
+    <db-platform name="PostgreSQL" definition-dir="DBPlatform_PostgreSQL"/>
+
+  </db-platforms>
+
+  <project-definition>
+    <parameter-definitions>
+
+      <parameter-definition
+        name="project-name"
+        type="VARCHAR"
+        category="Project"
+        external-name="Project name"
+        description="Project name."
+        required="true"
+      ></parameter-definition>
+
+      <parameter-definition
+        name="version"
+        type="VARCHAR"
+        category="Project"
+        external-name="Version"
+        description="Datebase model version."
+        required="false"
+      ></parameter-definition>
+
+      <parameter-definition
+        name="autogenerate-datamodel-xml"
+        type="BIT"
+        category="Settings"
+        external-name="Auto-Generate XML Datamodel"
+        description="Automatically store a XML version of datamodel each time project is opened (to track datamodel changes via a version control system)."
+        required="false"
+      ></parameter-definition>
+
+      <parameter-definition
+        name="identity-strategy"
+        type="VARCHAR"
+        category="Settings"
+        external-name="Identity Strategy"
+        description="Defines strategy for generating primary keys: table (Counter Table, default), sequence (Sequence)"
+        required="false"
+      >table</parameter-definition>
+
+      <parameter-definition
+        name="sequence-initial-value"
+        type="INTEGER"
+        category="Settings"
+        external-name="Sequence initial value"
+        description="Initial value for sequences (if identity strategy=sequence)"
+        required="false"
+      ></parameter-definition>
+
+<!--
+      <parameter-definition
+        name="test-bit"
+        type="BIT"
+        category="Test"
+        external-name="Test Bit"
+        description="Test-Parameter for datatype Bit."
+      ></parameter-definition>
+
+      <parameter-definition
+        name="test-clob"
+        type="CLOB"
+        category="Test"
+        external-name="Test Clob"
+        description="Test-Parameter for datatype Clob."
+      ></parameter-definition>
+
+      <parameter-definition
+        name="test-integer"
+        type="INTEGER"
+        category="Test"
+        external-name="Test Integer"
+        description="Test-Parameter for datatype Integer."
+      ></parameter-definition>
+
+      <parameter-definition
+        name="test-password"
+        type="PASSWORD"
+        category="Test"
+        external-name="Test Password"
+        description="Test-Parameter for datatype Password."
+      ></parameter-definition>
+
+      <parameter-definition
+        name="test-path"
+        type="PATH"
+        category="Test"
+        external-name="Test Path"
+        description="Test-Parameter for datatype Path."
+      ></parameter-definition>
+
+      <parameter-definition
+        name="test-varchar"
+        type="VARCHAR"
+        category="Test"
+        external-name="Test Varchar"
+        description="Test-Parameter for datatype Varchar."
+      ></parameter-definition>
+
+      <parameter-definition
+        name="test-timestamp"
+        type="TIMESTAMP"
+        category="Test"
+        external-name="Test Timestamp"
+        description="Test-Parameter for datatype Timestamp."
+      ></parameter-definition>
+-->
+    </parameter-definitions>
+  </project-definition>
+
+  <entity-generation>
+    <generate-entity>
+      <parameter-definitions>
+
+        <!-- Entity class -->
+        <parameter-definition
+          name="generate-entity"
+          type="BIT"
+          category="Entity class"
+          external-name="Generate entity"
+          description="Generate entity class"
+          required="1"
+        >true</parameter-definition>
+
+<!--
+        <parameter-definition
+          name="deprecated-entity"
+          type="BIT"
+          category="Entity class"
+          external-name="Deprecated"
+          description="Generate entity class with deprecated/obsolete warning."
+          required="0"
+        >false</parameter-definition>
+-->
+
+        <parameter-definition
+          name="generate-getter"
+          type="BIT"
+          category="Entity class"
+          external-name="Generate getter"
+          description="Generate properties for attributes with get methods."
+        >true</parameter-definition>
+
+        <parameter-definition
+          name="generate-setter"
+          type="BIT"
+          category="Entity class"
+          external-name="Generate setter"
+          description="Generate properties for attributes with set methods."
+        >true</parameter-definition>
+
+        <parameter-definition
+          name="generate-removecheck"
+          type="BIT"
+          category="Entity class"
+          external-name="Generate remove checks"
+          description="Generate remove checks for database constraints and cascading delete."
+        >true</parameter-definition>
+
+        <!-- Home class -->
+        <parameter-definition
+          name="generate-home"
+          type="BIT"
+          category="Home class"
+          external-name="Generate home/DAO"
+          description="Generate home/DAO class"
+          required="1"
+        >true</parameter-definition>
+
+<!--
+        <parameter-definition
+          name="deprecated-home"
+          type="BIT"
+          category="Home class"
+          external-name="Deprecated"
+          description="Generate home class with deprecated/obsolete warning."
+          required="0"
+        >false</parameter-definition>
+-->
+
+        <parameter-definition
+          name="generate-default-create"
+          type="BIT"
+          category="Home class"
+          external-name="Default Create"
+          description="Generate default Create() method."
+        >true</parameter-definition>
+
+        <parameter-definition
+          name="generate-default-create-object"
+          type="BIT"
+          category="Home class"
+          external-name="Default Create(DBObject)"
+          description="Generate default Create(DBOject) method."
+        >true</parameter-definition>
+
+        <parameter-definition
+          name="generate-findbyprimarykey"
+          type="BIT"
+          category="Home class"
+          external-name="Find by primary key"
+          description="Generate default FindByPrimaryKey method."
+        >true</parameter-definition>
+
+        <!-- Enumeration -->
+        <parameter-definition
+          name="generate-enumeration"
+          type="BIT"
+          category="Enumeration"
+          external-name="Enumeration"
+          description="Generate enumeration based on table data."
+        >false</parameter-definition>
+
+<!--
+        <parameter-definition
+          name="deprecated-enumeration"
+          type="BIT"
+          category="Enumeration"
+          external-name="Deprecated"
+          description="Generate enumeration with deprecated/obsolete warning."
+          required="0"
+        >false</parameter-definition>
+-->
+
+      </parameter-definitions>
+    </generate-entity>
+  </entity-generation>
+
+</pventitygenerator-config>

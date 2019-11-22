@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db-platform-definition name="MySQL" script-delimiter=";" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\PVEntityGenerator-schema.xsd" script-delimiter-newline="false" group-statements="1" foreign-key-checks-on="SET FOREIGN_KEY_CHECKS=1" foreign-key-checks-off="SET FOREIGN_KEY_CHECKS=0"  >
+  <parameter-definitions>
+    <parameter-definition name="unicode" type="BIT" category="Script generation" external-name="Unicode" description="Generate unicode text fields." required="1">true</parameter-definition>
+    <parameter-definition name="grant-to" type="VARCHAR" category="Script generation" external-name="Grant to" description="Generate grants to user/group."/>
+    <parameter-definition name="cascading-deletes" type="BIT" category="Script generation" external-name="Cascading deletes" description="Generate cascading delete in database (not recommended).">false</parameter-definition>
+    <parameter-definition name="ignore-self-references" type="BIT" category="Script generation" external-name="Ignore Self-References" description="Ignore self-referencing foreign key constraints on tables. If set to true, smart references on data transfer is not needed.">false</parameter-definition>
+    <parameter-definition name="ignore-unique-indexes" type="BIT" category="Script generation" external-name="Ignore unique indexes" description="Do not generate indexes with UNIQUE keyword, even if defined as unique in database definition (solves problem with automated unit tests).">false</parameter-definition>
+    <parameter-definition name="smart-references" type="BIT" category="Data transfer" external-name="Smart references" description="Resolve cyclic references on data transfer.">true</parameter-definition>
+    <parameter-definition name="script-path" type="PATH" category="Paths" external-name="Script path" description="Generation path for scripts."/>
+    <parameter-definition name="name-max-length" type="INTEGER" category="Script generation" external-name="Name max. length" description="Maximum length for generated names.">64</parameter-definition>
+  </parameter-definitions>
+  <db-provider-definitions>
+    <db-provider-definition name="MySQL .NET" type="NET" provider-assembly="MySql.Data" provider-class="MySql.Data.MySqlClient.MySqlConnection" connection-string="Persist Security Info=False;database={database};server={server};user id={user};Password={password}" sql-parameter-prefix="?">
+      <parameter-definitions>
+        <parameter-definition name="server" type="VARCHAR" category="Connection" external-name="Server" description="Server/host name." required="1"/>
+        <parameter-definition name="database" type="VARCHAR" category="Connection" external-name="Database" description="Database name." required="1"/>
+        <parameter-definition name="user" type="VARCHAR" category="Connection" external-name="User" description="Login user name." required="0"/>
+        <parameter-definition name="password" type="PASSWORD" category="Connection" external-name="Password" description="Login password." required="0"/>
+      </parameter-definitions>
+    </db-provider-definition>
+    <!--
+    <db-provider-definition name="MySQL OLE DB" type="OLEDB" provider-assembly="System.Data" provider-class="System.Data.OleDb.OleDbConnection" connection-string="Provider=MySqlProv;Data Source={database};Location={server};User ID={user};Password={password};">
+      <parameter-definitions>
+        <parameter-definition name="server" type="VARCHAR" category="Connection" external-name="Server" description="Server/host name." required="1"/>
+        <parameter-definition name="database" type="VARCHAR" category="Connection" external-name="Database" description="Database name." required="1"/>
+        <parameter-definition name="user" type="VARCHAR" category="Connection" external-name="User" description="Login user name." required="1"/>
+        <parameter-definition name="password" type="PASSWORD" category="Connection" external-name="Password" description="Login password." required="0"/>
+      </parameter-definitions>
+    </db-provider-definition>
+    -->
+  </db-provider-definitions>
+  <script-generation>
+    <generate-global>
+      <!--<generate-file name="entity-storedproc" path="{$script-path}" filename="{$project-name}_StoredProc_Oracle.sql" transform="global_storedproc-script.xsl"/>-->
+      <generate-file name="entity-create" path="{$script-path}" filename="{$project-name}_Create_MySQL.sql" transform="global_create-script.xsl"/>
+      <generate-file name="entity-patch" path="{$script-path}" filename="{$project-name}_Patch_MySQL.sql" transform="global_patch-script.xsl"/>
+    </generate-global>
+  </script-generation>
+</db-platform-definition>

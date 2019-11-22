@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<platform-definition name="NET"
+    newline-type="WINDOWS" uppercase-method-names="1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\PVEntityGenerator-schema.xsd">
+
+  <parameter-definitions>
+
+    <parameter-definition
+      name="entity-namespace"
+      type="VARCHAR"
+      category=".NET"
+      external-name="Entity namespace"
+      description="Assembly Namespace for generated entity files."
+      required="1"
+    ></parameter-definition>
+
+    <parameter-definition
+      name="unittest-namespace"
+      type="VARCHAR"
+      category=".NET"
+      external-name="Unit test namespace"
+      description="Assembly Namespace for generated unit test files."
+    ></parameter-definition>
+
+    <parameter-definition
+      name="getsetmethods"
+      type="BIT"
+      category=".NET"
+      external-name="Getter/Setter methods"
+      description="Generate getter and setter methods for attributes (in addtion to Property definitions)."
+    >false</parameter-definition>
+
+    <parameter-definition
+      name="path-entity"
+      type="PATH"
+      category="Paths"
+      external-name="Entity file path"
+      description="Path for generation of Entity files."
+      required="1"
+    ></parameter-definition>
+
+    <parameter-definition
+      name="path-unittest"
+      type="PATH"
+      category="Paths"
+      external-name="Unit test file path"
+      description="Path for generation of Unit test files."
+    ></parameter-definition>
+
+    <parameter-definition
+      name="file-header"
+      type="CLOB"
+      category="Code Generation"
+      external-name="File Header"
+      description="File Header for generated files."
+    ></parameter-definition>
+
+    <parameter-definition
+      name="generate-comments"
+      type="BIT"
+      category="Code Generation"
+      external-name="Generate Comments"
+      description="Generate source code comments."
+    >true</parameter-definition>
+
+    <parameter-definition
+      name="generate-unittest"
+      type="BIT"
+      category="Code Generation"
+      external-name="Generate unit tests"
+      description="Generate unit test classes."
+      required="1"
+    >true</parameter-definition>
+
+    <parameter-definition
+      name="unittest-baseclass"
+      type="VARCHAR"
+      category="Code Generation"
+      external-name="Unit test base class"
+      description="Base class for unit tests."
+    ></parameter-definition>
+
+    <parameter-definition
+      name="generate-db-storedproc"
+      type="BIT"
+      category="Code Generation"
+      external-name="Generate stored procedures"
+      description="Generate database stored procedures (if supported by selected database platform)."
+    >false</parameter-definition>
+
+    <parameter-definition
+      name="custom-class-extension-tag-start"
+      type="CLOB"
+      category="Internal"
+      external-name="Custom class extenstion start tag"
+      description="Custom class extenstion start tag."
+      required="1"
+    >//+++ Custom class extensions START +++
+</parameter-definition>
+
+    <parameter-definition
+      name="custom-class-extension-tag-end"
+      type="CLOB"
+      category="Internal"
+      external-name="Custom class extenstion end tag"
+      description="Custom class extenstion end tag."
+      required="1"
+    >//+++ Custom class extensions END +++
+</parameter-definition>
+
+  </parameter-definitions>
+
+  <entity-generation>
+
+    <generate-entity>
+
+      <parameter-definitions>
+
+        <parameter-definition
+          name="generate-serializable"
+          type="BIT"
+          category="Entity class"
+          external-name="Serializable"
+          description="Generate as serializable class."
+        >true</parameter-definition>
+
+      </parameter-definitions>
+
+      <generate-file name="entity-class" path="{$path-entity}" filename="{entity}.cs" transform="entity_entity-class.xsl"/>
+      <generate-file name="home-class" path="{$path-entity}" filename="{entity}Home.cs" transform="entity_home-class.xsl"/>
+      <generate-file name="unittest-class" path="{$path-unittest}" filename="{entity}Test.cs" transform="entity_unittest-class.xsl"/>
+
+    </generate-entity>
+
+  </entity-generation>
+
+</platform-definition>
