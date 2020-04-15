@@ -89,13 +89,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Janus.Data.v4, Version=4.0.45.0, Culture=neutral, PublicKeyToken=21d5517571b185bf, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\Janus.Data.v4.dll</HintPath>
     </Reference>
     <Reference Include="Janus.Windows.Common.v4, Version=4.0.45.0, Culture=neutral, PublicKeyToken=21d5517571b185bf, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\Janus.Windows.Common.v4.dll</HintPath>
     </Reference>
     <Reference Include="Janus.Windows.GridEX.v4, Version=4.0.45.0, Culture=neutral, PublicKeyToken=21d5517571b185bf, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\Janus.Windows.GridEX.v4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
@@ -221,6 +224,9 @@
     <Compile Include="XMLSchema\PVEntityGenerator-schema.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="Janus.Data.v4.dll" />
+    <Content Include="Janus.Windows.Common.v4.dll" />
+    <Content Include="Janus.Windows.GridEX.v4.dll" />
     <Content Include="xml\DBPlatform_MySQL\db-platform.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -307,6 +313,7 @@
     </Content>
     <Content Include="xml\Platform_Java5JPA\entity_entity-class.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="xml\Platform_Java5JPA\entity_entity_unittest-class.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
