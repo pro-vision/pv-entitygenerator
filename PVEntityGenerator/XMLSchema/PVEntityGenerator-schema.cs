@@ -2301,7 +2301,17 @@ namespace PVEntityGenerator.XMLSchema {
         private string xmlmappingField;
         
         private string searchindexField;
-        
+
+        private bool spatialField;
+
+        private bool longitudeField;
+
+        private bool latitudeField;
+
+        private bool sortableField;
+
+        private string sortableRefField;
+
         private string searchstoreField;
         
         private int searchembeddepthField;
@@ -2480,7 +2490,77 @@ namespace PVEntityGenerator.XMLSchema {
                 this.searchindexField = value;
             }
         }
-        
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute("sortable-field")]
+        public string sortablereffield
+        {
+            get
+            {
+                return this.sortableRefField;
+            }
+            set
+            {
+                this.sortableRefField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool sortable
+        {
+            get
+            {
+                return this.sortableField;
+            }
+            set
+            {
+                this.sortableField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool spatial
+        {
+            get
+            {
+                return this.spatialField;
+            }
+            set
+            {
+                this.spatialField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool longitude
+        {
+            get
+            {
+                return this.longitudeField;
+            }
+            set
+            {
+                this.longitudeField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool latitude
+        {
+            get
+            {
+                return this.latitudeField;
+            }
+            set
+            {
+                this.latitudeField = value;
+            }
+        }
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("search-store")]
         public string searchstore {

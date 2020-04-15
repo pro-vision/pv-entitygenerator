@@ -330,6 +330,15 @@ namespace PVEntityGenerator {
         attr.deprecatedSpecified = true;
         attr.deprecated = true;
       }
+      if ((strDesc.IndexOf("#spatial") >= 0)) {
+        attr.spatial = true;
+      }
+      if ((strDesc.IndexOf("#longitude") >= 0)) {
+        attr.longitude = true;
+      }
+      if ((strDesc.IndexOf("#latitude") >= 0)) {
+        attr.latitude = true;
+      }
       if ((strDesc.IndexOf("#xmlmapping") >= 0)) {
         string xmlMapping = GetColumnDescriptionProperty(strDesc, "#xmlmapping");
         if (xmlMapping.Length != 0) {
@@ -342,6 +351,13 @@ namespace PVEntityGenerator {
           indexMode = "tokenized";
         }
         attr.searchindex = indexMode;
+      }
+      if ((strDesc.IndexOf("#sortablefield") >= 0)) {
+        attr.sortablereffield = GetColumnDescriptionProperty(strDesc, "#sortablefield");
+        attr.sortable = true;
+      }
+      if ((strDesc.IndexOf("#sortable") >=0 )) {
+        attr.sortable = true;
       }
       if ((strDesc.IndexOf("#searchstore") >= 0)) {
         string searchStore = GetColumnDescriptionProperty(strDesc, "#searchstore");

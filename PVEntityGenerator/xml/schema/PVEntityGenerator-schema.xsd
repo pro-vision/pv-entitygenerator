@@ -424,6 +424,7 @@
                               <xs:attribute name="search-boost" type="xs:float" use="optional"/>
                               <xs:attribute name="search-date-resolution" type="xs:string" use="optional"/>
                               <xs:attribute name="search-fieldbridge" type="xs:string" use="optional"/>
+							  <xs:attribute name="spatial" type="xs:boolean" use="optional"/>
                             </xs:complexType>
                           </xs:element>
                         </xs:sequence>
