@@ -76,3 +76,8 @@ Additional attributes currently only supported for the 'Java5JPA' platform:
 | searchboost          | Defines a search boost factor (float number) | `#searchboost=2.5`
 | searchdateresolution | Defines the resolution for timestamp fields: `year`, `month`, `day` (default), `hour`, `minute`, `second`, `millisecond` | `#searchdateresolution=day`
 | searchfieldbridge    | Defines the class name of a custom  "FieldBridge" or "StringBridge" implementation. | `#searchfieldbridge=xx.yy.FieldBridgeImpl`
+| spatial              | ??? | `#spatial`
+| longitude            | ??? | `#longitude`
+| latitude             | ??? | `#latitude`
+| sortablefield        | ??? | `#sortablefield=myfield`
+| sortable             | ??? | `#sortable`
