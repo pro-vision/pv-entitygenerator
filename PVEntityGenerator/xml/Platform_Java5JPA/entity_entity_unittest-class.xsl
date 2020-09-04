@@ -735,7 +735,6 @@ import org.junit.*;
     </xsl:apply-templates>
     <xsl:text>
     org.junit.Assert.assertFalse(dbo.equals(null));
-    org.junit.Assert.assertFalse(dbo.equals("this is not an entity at all"));
     org.junit.Assert.assertTrue(dbo.equals(dbo));
     org.junit.Assert.assertFalse(dbo.equals(dbo2));
 
