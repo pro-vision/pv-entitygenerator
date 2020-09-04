@@ -270,7 +270,7 @@
           external-name="Search Index"
           description="Mark this entity to be fulltext-indexed by Hibernate Search."
         ></parameter-definition>
-
+		
         <parameter-definition
           name="search-mapping"
           type="VARCHAR"
@@ -285,6 +285,14 @@
           category="Search Index"
           external-name="Search Custom Annot."
           description="Additional annotations for entity class for configuration Full Text Search Indexing, i.e. for full text filter definitions."
+        ></parameter-definition>
+
+        <parameter-definition
+          name="spatial"
+          type="BIT"
+          category="Search Index"
+          external-name="Spatial"
+          description="Flag indicating if the Hibernate annotation Spatial should be set on the entity."
         ></parameter-definition>
 
         <parameter-definition
