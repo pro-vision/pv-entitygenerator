@@ -10,6 +10,7 @@
     <platform name="Java2" definition-dir="Platform_Java2"/>
     <platform name="Java5" definition-dir="Platform_Java5"/>
     <platform name="Java5JPA" definition-dir="Platform_Java5JPA"/>
+	  <platform name="Java11" definition-dir="Platform_Java11"/>
     <platform name="NET" definition-dir="Platform_NET"/>
     <platform name="NET20" definition-dir="Platform_NET20"/>
 
