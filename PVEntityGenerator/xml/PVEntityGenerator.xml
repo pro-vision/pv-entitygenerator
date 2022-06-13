@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- $URL$ -->
+<!-- $Id$ -->
+
 <pventitygenerator-config
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema\PVEntityGenerator-schema.xsd">
 
@@ -7,6 +10,7 @@
     <platform name="Java2" definition-dir="Platform_Java2"/>
     <platform name="Java5" definition-dir="Platform_Java5"/>
     <platform name="Java5JPA" definition-dir="Platform_Java5JPA"/>
+	  <platform name="Java11" definition-dir="Platform_Java11"/>
     <platform name="NET" definition-dir="Platform_NET"/>
     <platform name="NET20" definition-dir="Platform_NET20"/>
 
