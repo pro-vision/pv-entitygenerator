@@ -281,31 +281,31 @@
     <Content Include="xml\DBPlatform_SQLServer\global_storedproc-script.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="xml\Platform_Java11\entity_dao-class.xsl">
+    <Content Include="xml\Platform_Java11JPA\entity_dao-class.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="xml\Platform_Java11\entity_dao_unittest-class.xsl">
+    <Content Include="xml\Platform_Java11JPA\entity_dao_unittest-class.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="xml\Platform_Java11\entity_entity-class.xsl">
+    <Content Include="xml\Platform_Java11JPA\entity_entity-class.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="xml\Platform_Java11\entity_entity_unittest-class.xsl">
+    <Content Include="xml\Platform_Java11JPA\entity_entity_unittest-class.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="xml\Platform_Java11\global_dao_unittest-suite-class.xsl">
+    <Content Include="xml\Platform_Java11JPA\global_dao_unittest-suite-class.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="xml\Platform_Java11\global_entity_unittest-suite-class.xsl">
+    <Content Include="xml\Platform_Java11JPA\global_entity_unittest-suite-class.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="xml\Platform_Java11\global_orm-file.xsl">
+    <Content Include="xml\Platform_Java11JPA\global_orm-file.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="xml\Platform_Java11\platform.xml">
+    <Content Include="xml\Platform_Java11JPA\platform.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="xml\Platform_Java11\platform_defaults.xsl">
+    <Content Include="xml\Platform_Java11JPA\platform_defaults.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="xml\Platform_Java2\entity_entity-class.xsl">

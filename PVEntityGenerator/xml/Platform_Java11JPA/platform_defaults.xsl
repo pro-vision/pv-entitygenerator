@@ -11,7 +11,7 @@
 <!-- Globale Variablen -->
 <xsl:variable name="db-definition" select="/pventitygenerator-data/db-definition"/>
 <xsl:variable name="project-settings" select="/pventitygenerator-data/project-settings"/>
-<xsl:variable name="platform" select="$project-settings/platforms/platform[@name='Java11']"/>
+<xsl:variable name="platform" select="$project-settings/platforms/platform[@name='Java11JPA']"/>
 <xsl:variable name="identity-strategy" select="$project-settings/parameters/parameter[@name='identity-strategy']"/>
 
 <xsl:variable name="generate-comments" select="$platform/parameters/parameter[@name='generate-comments']='true'"/>
@@ -26,7 +26,7 @@
 
 <!-- Globale keys -->
 <xsl:key name="generate-entity" match="/pventitygenerator-data/project-settings/entity-generation/generate-entity" use="@entity"/>
-<xsl:key name="generate-entity-platform" match="/pventitygenerator-data/project-settings/platforms/platform[@name='Java11']/entity-generation/generate-entity" use="@entity"/>
+<xsl:key name="generate-entity-platform" match="/pventitygenerator-data/project-settings/platforms/platform[@name='Java11JPA']/entity-generation/generate-entity" use="@entity"/>
 
 <xsl:key name="foreign-key-check" match="/pventitygenerator-data/db-definition/entities/entity/keys/foreign-key[@cascading-delete='false']" use="@foreign-entity"/>
 <xsl:key name="foreign-key-cascading-delete" match="/pventitygenerator-data/db-definition/entities/entity/keys/foreign-key[@cascading-delete='true']" use="@foreign-entity"/>
