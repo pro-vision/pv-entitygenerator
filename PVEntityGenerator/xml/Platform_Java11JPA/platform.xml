@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<platform-definition name="Java11JPA"
+    newline-type="UNIX" uppercase-method-names="0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\PVEntityGenerator-schema.xsd">
+
+  <parameter-definitions>
+
+    <!-- Category: Java -->
+    <parameter-definition
+      name="entity-package"
+      type="VARCHAR"
+      category="Java"
+      external-name="Entity package"
+      description="Java package for generated entity files."
+      required="1"
+    ></parameter-definition>
+
+    <parameter-definition
+      name="dao-package"
+      type="VARCHAR"
+      category="Java"
+      external-name="DAO package"
+      description="Java package for generated dao files."
+      required="1"
+    ></parameter-definition>
+
+    <parameter-definition
+      name="dao-superclass"
+      type="VARCHAR"
+      category="Java"
+      external-name="DAO superclass"
+      description="Superclass for all DAO classes."
+      required="1"
+    ></parameter-definition>
+
+    <parameter-definition
+      name="entity-unittest-package"
+      type="VARCHAR"
+      category="Java"
+      external-name="Entity unit test package"
+      description="Java oackage for generated entity unit test files."
+    ></parameter-definition>
+
+    <parameter-definition
+      name="dao-unittest-package"
+      type="VARCHAR"
+      category="Java"
+      external-name="DAO Unit test package"
+      description="Java package for generated DAO unit test files."
+    ></parameter-definition>
+
+    <parameter-definition
+      name="unittest-baseclass"
+      type="VARCHAR"
+      category="Java"
+      external-name="Unit test base class"
+      description="Base class for unit tests."
+    ></parameter-definition>
+
+    <!-- Category: Paths -->
+    <parameter-definition
+      name="path-entity"
+      type="PATH"
+      category="Paths"
+      external-name="Entity file path"
+      description="Path for generation of Entity files."
+      required="1"
+    ></parameter-definition>
+
+    <parameter-definition
+      name="path-dao"
+      type="PATH"
+      category="Paths"
+      external-name="DAO file path"
+      description="Path for generation of DAO files."
+      required="1"
+    ></parameter-definition>
+
+    <parameter-definition
+      name="path-entity-unittest"
+      type="PATH"
+      category="Paths"
+      external-name="Entity unit test file path"
+      description="Path for generation of entity class unit test files."
+    ></parameter-definition>
+
+    <parameter-definition
+      name="path-dao-unittest"
+      type="PATH"
+      category="Paths"
+      external-name="DAO Unit test file path"
+      description="Path for generation of DAO class unit test files."
+    ></parameter-definition>
+
+    <parameter-definition
+      name="path-meta-inf"
+      type="PATH"
+      category="Paths"
+      external-name="META-INF path"
+      description="Path to META-INF directory"
+    ></parameter-definition>
+
+    <!-- Category: Code Generation -->
+    <parameter-definition
+      name="file-header"
+      type="CLOB"
+      category="Code Generation"
+      external-name="File Header"
+      description="File Header for generated files."
+    ></parameter-definition>
+
+    <parameter-definition
+      name="generate-comments"
+      type="BIT"
+      category="Code Generation"
+      external-name="Generate Comments"
+      description="Generate source code comments."
+    >true</parameter-definition>
+
+    <parameter-definition
+      name="generate-unittest"
+      type="BIT"
+      category="Code Generation"
+      external-name="Generate unit tests"
+      description="Generate unit test classes."
+      required="1"
+    >true</parameter-definition>
+
+    <parameter-definition
+      name="generate-unittest-suite"
+      type="BIT"
+      category="Code Generation"
+      external-name="Generate unit test suite"
+      description="Generate unit test suite class."
+      required="1"
+    >true</parameter-definition>
+
+    <parameter-definition
+      name="generate-db-storedproc"
+      type="BIT"
+      category="Code Generation"
+      external-name="Generate stored procedures"
+      description="Generate database stored procedures (if supported by selected database platform)."
+    >true</parameter-definition>
+
+    <parameter-definition
+      name="generate-meta-inf-orm"
+      type="BIT"
+      category="Code Generation"
+      external-name="Generate ORM meta-inf"
+      description="Generates orm.xml in META-INF directory."
+    >false</parameter-definition>
+
+    <parameter-definition
+      name="generate-spring-annotations"
+      type="BIT"
+      category="Code Generation"
+      external-name="Generate Spring annotations"
+      description="Generates annotations for usage of Entity and DAO classes in Spring container with JPA support."
+    >false</parameter-definition>
+
+    <parameter-definition
+      name="generate-checkstyle-suppress-comments"
+      type="BIT"
+      category="Code Generation"
+      external-name="Generate Checkstyle suppress comments"
+      description="Generates CHECKSTYLE:OFF..CHECKSTYLE:ON comments to skip automtic generated code for Checkstyle analysis."
+    >false</parameter-definition>
+
+    <parameter-definition
+      name="jpa-version"
+      type="VARCHAR"
+      category="Code Generation"
+      external-name="JPA Version"
+      description="JPA Version to target at. Possible values: 1.0 or 2.0."
+    >1.0</parameter-definition>
+
+    <!-- Category: Internal -->
+    <parameter-definition
+      name="custom-class-extension-tag-start"
+      type="CLOB"
+      category="Internal"
+      external-name="Custom class extenstion start tag"
+      description="Custom class extenstion start tag."
+      required="1"
+    >//+++ Custom class extensions START +++
+</parameter-definition>
+
+    <parameter-definition
+      name="custom-class-extension-tag-end"
+      type="CLOB"
+      category="Internal"
+      external-name="Custom class extenstion end tag"
+      description="Custom class extenstion end tag."
+      required="1"
+    >//+++ Custom class extensions END +++
+</parameter-definition>
+
+    <!-- Category: Database -->
+    <parameter-definition
+      name="database-counter-table"
+      type="VARCHAR"
+      category="Database"
+      external-name="Counter table"
+      description="Name of counter table"
+      required="1"
+    >PVCounter</parameter-definition>
+
+    <parameter-definition
+      name="database-counter-name-primarykey"
+      type="BIT"
+      category="Database"
+      external-name="Counter name PK"
+      description="Use primary key field name as counter table entry name"
+      required="0"
+    >false</parameter-definition>
+
+  </parameter-definitions>
+
+  <entity-generation>
+
+    <generate-global>
+
+      <generate-file name="entity-unittest-suite" path="{$path-entity-unittest}" filename="AllTests.java" transform="global_entity_unittest-suite-class.xsl" encoding="UTF-8"/>
+      <generate-file name="dao-unittest-suite" path="{$path-dao-unittest}" filename="AllTests.java" transform="global_dao_unittest-suite-class.xsl" encoding="UTF-8"/>
+      <generate-file name="orm-file" path="{$path-meta-inf}" filename="orm.xml" transform="global_orm-file.xsl" encoding="UTF-8"/>
+
+    </generate-global>
+
+    <generate-entity>
+
+      <parameter-definitions>
+
+        <parameter-definition
+          name="generate-serializable"
+          type="BIT"
+          category="Entity class"
+          external-name="Serializable"
+          description="Generate as serializable class."
+        >true</parameter-definition>
+
+        <parameter-definition
+          name="implement-interfaces"
+          type="VARCHAR"
+          category="Entity class"
+          external-name="Implement interfaces"
+          description="Add additional interfaces the entity class should implement. Use full qualified package names."
+        ></parameter-definition>
+
+        <parameter-definition
+          name="comparator-class"
+          type="VARCHAR"
+          category="Entity class"
+          external-name="Comparator class"
+          description="If a comparator class is assigned, all collection sets referencing this entity will use a sorted set with this comparator."
+        ></parameter-definition>
+
+        <parameter-definition
+          name="skip-onetomany"
+          type="VARCHAR"
+          category="Entity class"
+          external-name="Skip OneToMany"
+          description="Does not generated bidirectional OneToMany association on the foreign part of the specified fields' foreign key associations. You can specify multiple fields separated by ','."
+        ></parameter-definition>
+
+        <parameter-definition
+          name="search-index"
+          type="BIT"
+          category="Search Index"
+          external-name="Search Index"
+          description="Mark this entity to be fulltext-indexed by Hibernate Search."
+        ></parameter-definition>
+
+        <parameter-definition
+          name="search-mapping"
+          type="VARCHAR"
+          category="Search Index"
+          external-name="Search Mapping"
+          description="Mapping for search indexing: Hibernate Search ClassBridge implementation."
+        ></parameter-definition>
+
+        <parameter-definition
+          name="search-customannotations"
+          type="VARCHAR"
+          category="Search Index"
+          external-name="Search Custom Annot."
+          description="Additional annotations for entity class for configuration Full Text Search Indexing, i.e. for full text filter definitions."
+        ></parameter-definition>
+
+        <parameter-definition
+          name="allocation-size"
+          type="INTEGER"
+          category="ORM"
+          external-name="Allocation Size"
+          description="Allocation size for primary key generation in orm.xml."
+        >1</parameter-definition>
+
+      </parameter-definitions>
+
+      <generate-file name="entity-class" path="{$path-entity}" filename="{entity}.java" transform="entity_entity-class.xsl" encoding="UTF-8"/>
+      <generate-file name="dao-class" path="{$path-dao}" filename="{entity}DAO.java" transform="entity_dao-class.xsl" encoding="UTF-8"/>
+      <generate-file name="entity-unittest-class" path="{$path-entity-unittest}" filename="{entity}Test.java" transform="entity_entity_unittest-class.xsl" encoding="UTF-8"/>
+      <generate-file name="dao-unittest-class" path="{$path-dao-unittest}" filename="{entity}DAOTest.java" transform="entity_dao_unittest-class.xsl" encoding="UTF-8"/>
+
+    </generate-entity>
+
+  </entity-generation>
+
+</platform-definition>
