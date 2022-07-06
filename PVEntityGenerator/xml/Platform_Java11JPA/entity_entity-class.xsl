@@ -24,7 +24,7 @@
   <xsl:variable name="implement-interfaces-firstpart">
     <xsl:choose>
       <xsl:when test="$generate-entity/parameters/parameter[@name='generate-enumeration']='true'">
-        <xsl:text>de.vivento.koop.util.IdEnum</xsl:text>
+        <xsl:text>de.provision.framework.jpa.IdEnum</xsl:text>
       </xsl:when>
       <xsl:when test="$generate-entity-platform/parameters/parameter[@name='generate-serializable']='true'">
         <xsl:text>java.io.Serializable</xsl:text>
@@ -93,7 +93,7 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
       <xsl:text>@org.hibernate.annotations.TypeDefs({
   @org.hibernate.annotations.TypeDef(
     name="</xsl:text><xsl:value-of select="$entity"/><xsl:text>$</xsl:text><xsl:value-of select="@name"/><xsl:text>",
-    typeClass=de.vivento.koop.jpa.XmlMappingUserType.class,
+    typeClass=de.provision.framework.jpa.XmlMappingUserType.class,
     parameters={ @org.hibernate.annotations.Parameter(name="beanClass", value="</xsl:text><xsl:value-of select="@xml-mapping"/><xsl:text>") }
   )
 })
@@ -1222,7 +1222,15 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
   /**
    * Konverter für diese Werteliste
    */
-  public static class Converter extends de.vivento.koop.jpa.converter.WLConverter&lt;</xsl:text><xsl:value-of select="$entity"/><xsl:text>&gt; {
+  public static class Converter implements javax.persistence.AttributeConverter&lt;</xsl:text><xsl:value-of select="$entity"/>, Integer<xsl:text>&gt; {
+
+    @Override
+    public Integer convertToDatabaseColumn(</xsl:text><xsl:value-of select="$entity"/><xsl:text> attribute) {
+      if (attribute != null) {
+        return attribute.getId();
+      }
+      return null;
+    }
 
     @Override
     public </xsl:text><xsl:value-of select="$entity"/><xsl:text> convertToEntityAttribute(Integer dbData) {
