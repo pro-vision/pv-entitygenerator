@@ -270,7 +270,7 @@
           external-name="Search Index"
           description="Mark this entity to be fulltext-indexed by Hibernate Search."
         ></parameter-definition>
-		
+
         <parameter-definition
           name="search-mapping"
           type="VARCHAR"
