@@ -112,6 +112,10 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
     <xsl:if test="$generate-entity-platform/parameters/parameter[@name='search-customannotations']!=''">
       <xsl:value-of select="$generate-entity-platform/parameters/parameter[@name='search-customannotations']"/><xsl:text>
 </xsl:text>
+	</xsl:if>
+	<xsl:if test="$generate-entity-platform/parameters/parameter[@name='spatial']='true'">
+	  <xsl:text>@org.hibernate.search.annotations.Spatial
+</xsl:text>	
     </xsl:if>
   </xsl:if>
 
@@ -287,11 +291,23 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
       <xsl:text>  @org.hibernate.search.annotations.DocumentId
 </xsl:text>
     </xsl:if>
+	  <xsl:if test="@spartial='true'">
+		  <xsl:text>  @org.hibernate.search.annotations.Spatial
+</xsl:text>
+	  </xsl:if>
+	  <xsl:if test="@longitude='true'">
+		  <xsl:text>  @org.hibernate.search.annotations.Longitude
+</xsl:text>
+	  </xsl:if>
+	  <xsl:if test="@latitude='true'">
+		  <xsl:text>  @org.hibernate.search.annotations.Latitude
+</xsl:text>
+	  </xsl:if>
     <xsl:if test="@search-index and not($entity-element/keys/primary-key/attribute-ref[@attribute=current()/@name])">
       <xsl:choose>
         <xsl:when test="$foreign-key">
           <xsl:if test="@search-embed-depth>0">
-            <xsl:text>  @org.hibernate.search.annotations.IndexedEmbedded(depth=</xsl:text><xsl:value-of select="@search-embed-depth"/><xsl:text>)
+            <xsl:text>  @org.hibernate.search.annotations.IndexedEmbedded(depth=</xsl:text><xsl:value-of select="@search-embed-depth"/><xsl:text>, includeEmbeddedObjectId = true)
 </xsl:text>
           </xsl:if>
         </xsl:when>
@@ -332,7 +348,7 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
           <xsl:if test="@search-date-resolution">
             <xsl:text>  @org.hibernate.search.annotations.DateBridge(resolution=org.hibernate.search.annotations.Resolution.</xsl:text>
             <xsl:value-of select="translate(@search-date-resolution,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
-            <xsl:text>)
+            <xsl:text>, encoding = org.hibernate.search.annotations.EncodingType.STRING)
 </xsl:text>
           </xsl:if>
         </xsl:otherwise>
@@ -341,9 +357,26 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
         <xsl:text>  @org.hibernate.search.annotations.FieldBridge(impl=</xsl:text><xsl:value-of select="@search-fieldbridge"/><xsl:text>)
 </xsl:text>
       </xsl:if>
-    </xsl:if>
 
+    </xsl:if>
+	  <xsl:if test="@sortable='true'">
+		  <xsl:if test="@sortable-field!=''">
+			  <xsl:text>  @org.hibernate.search.annotations.Field(name = "</xsl:text><xsl:value-of select="@sortable-field"/><xsl:text>", analyze = org.hibernate.search.annotations.Analyze.NO, store = org.hibernate.search.annotations.Store.NO)
+</xsl:text>
+			  <xsl:text>  @org.hibernate.search.annotations.SortableField(forField = "</xsl:text><xsl:value-of select="@sortable-field"/>
+			  <xsl:text>")
+</xsl:text>
+		  </xsl:if>
+		  <xsl:if test="not(@sortable-field)">
+			  <xsl:text>  @org.hibernate.search.annotations.SortableField
+</xsl:text>
+		  </xsl:if>
+	  </xsl:if>
     <!-- field -->
+    <xsl:if test="$enum-type!=''">
+      <xsl:text>  @Convert(converter = </xsl:text><xsl:value-of select="$enum-type"/><xsl:text>.Converter.class)
+</xsl:text>
+    </xsl:if>
     <xsl:text>  private </xsl:text>
     <xsl:choose>
       <xsl:when test="@xml-mapping!=''">
@@ -351,6 +384,9 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
       </xsl:when>
       <xsl:when test="$foreign-key">
         <xsl:value-of select="$foreign-key/@foreign-entity"/>
+      </xsl:when>
+      <xsl:when test="$enum-type!=''">
+        <xsl:value-of select="$enum-type"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="variable-type">
@@ -387,9 +423,11 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
           </xsl:when>
           <xsl:otherwise>
             <xsl:text> = </xsl:text>
+            <xsl:if test="$enum-type!=''"><xsl:value-of select="$enum-type"/><xsl:text>.valueOf(</xsl:text></xsl:if>
             <xsl:value-of select="$value"/>
           </xsl:otherwise>
         </xsl:choose>
+        <xsl:if test="$enum-type!=''"><xsl:text>)</xsl:text></xsl:if>
       </xsl:when>
       <xsl:when test="$enum-type!=''">
         <xsl:text> = null</xsl:text>
@@ -779,10 +817,7 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
         <xsl:text>this.</xsl:text><xsl:value-of select="$attribute-name"/>
       </xsl:when>
       <xsl:when test="$enum-type!=''">
-        <xsl:value-of select="$platform/parameters/parameter[@name='entity-package']"/>
-        <xsl:text>.</xsl:text>
-        <xsl:value-of select="$enum-type"/>
-        <xsl:text>.valueOf(</xsl:text><xsl:text>this.</xsl:text><xsl:value-of select="$attribute-name"/><xsl:text>)</xsl:text>
+        <xsl:text>this.</xsl:text><xsl:value-of select="$attribute-name"/>
       </xsl:when>
       <xsl:when test="$foreign-key">
         <xsl:text>this.</xsl:text><xsl:value-of select="$attribute-name"/>
@@ -858,11 +893,7 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
     <xsl:text> p</xsl:text>
     <xsl:text>Value) {
     </xsl:text>
-    <xsl:text>this.</xsl:text><xsl:value-of select="$attribute-name"/><xsl:text> = </xsl:text>
-    <xsl:choose>
-      <xsl:when test="$enum-type!=''">pValue!=null ? pValue.getId() : null</xsl:when>
-      <xsl:otherwise>pValue</xsl:otherwise>
-    </xsl:choose>
+    <xsl:text>this.</xsl:text><xsl:value-of select="$attribute-name"/><xsl:text> = pValue</xsl:text>
     <xsl:text>;
   }
 
@@ -1186,6 +1217,26 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
   <xsl:text>      default:
         throw new IllegalArgumentException("Invalid enumeration ID: " + pId);
     }
+  }
+
+  /**
+   * Converter for this enum
+   */
+  static class Converter implements javax.persistence.AttributeConverter&lt;</xsl:text><xsl:value-of select="$entity"/>, Integer<xsl:text>&gt; {
+
+    @Override
+    public Integer convertToDatabaseColumn(</xsl:text><xsl:value-of select="$entity"/><xsl:text> attribute) {
+      if (attribute != null) {
+        return attribute.getId();
+      }
+      return null;
+    }
+
+    @Override
+    public </xsl:text><xsl:value-of select="$entity"/><xsl:text> convertToEntityAttribute(Integer dbData) {
+      return valueOf(dbData);
+    }
+
   }
 
 </xsl:text>

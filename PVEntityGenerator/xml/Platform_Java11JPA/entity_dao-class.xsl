@@ -398,16 +398,7 @@ import </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='en
     else {
       query = getEntityManager().createQuery("select e from </xsl:text><xsl:value-of select="$entity"/><xsl:text> e</xsl:text>
     <xsl:text> where e.</xsl:text><xsl:value-of select="$attribute-name"/><xsl:text>=?1 order by e.Id");
-      query.setParameter(1, </xsl:text>
-    <xsl:choose>
-      <xsl:when test="$enum-type!=''">
-        <xsl:text></xsl:text><xsl:value-of select="$attribute-variable"/><xsl:text>.getId()</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$attribute-variable"/>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:text>);
+      query.setParameter(1, </xsl:text><xsl:value-of select="$attribute-variable"/><xsl:text>);
     }
     return query.getResultList();
   }

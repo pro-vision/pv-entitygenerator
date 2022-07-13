@@ -288,6 +288,14 @@
         ></parameter-definition>
 
         <parameter-definition
+           name="spatial"
+           type="BIT"
+           category="Search Index"
+           external-name="Spatial"
+           description="Flag indicating if the Hibernate annotation Spatial should be set on the entity."
+        ></parameter-definition>
+
+        <parameter-definition
           name="allocation-size"
           type="INTEGER"
           category="ORM"
