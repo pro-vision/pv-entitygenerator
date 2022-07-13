@@ -270,15 +270,6 @@
           external-name="Search Index"
           description="Mark this entity to be fulltext-indexed by Hibernate Search."
         ></parameter-definition>
-
-		  <parameter-definition
-		   name="search-index"
-		   type="BIT"
-		   category="Search Index"
-		   external-name="Search Index"
-		   description="Mark this entity to be fulltext-indexed by Hibernate Search."
-        ></parameter-definition>
-
 		
         <parameter-definition
           name="search-mapping"

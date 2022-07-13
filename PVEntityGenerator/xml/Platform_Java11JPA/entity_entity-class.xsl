@@ -1220,9 +1220,9 @@ package </xsl:text><xsl:value-of select="$platform/parameters/parameter[@name='e
   }
 
   /**
-   * Konverter für diese Werteliste
+   * Converter for this enum
    */
-  public static class Converter implements javax.persistence.AttributeConverter&lt;</xsl:text><xsl:value-of select="$entity"/>, Integer<xsl:text>&gt; {
+  static class Converter implements javax.persistence.AttributeConverter&lt;</xsl:text><xsl:value-of select="$entity"/>, Integer<xsl:text>&gt; {
 
     @Override
     public Integer convertToDatabaseColumn(</xsl:text><xsl:value-of select="$entity"/><xsl:text> attribute) {
