@@ -85,7 +85,7 @@ namespace PVEntityGenerator {
       }
       catch (Exception ex) {
         try {
-          asm = Assembly.LoadWithPartialName(providerdef.providerassembly);
+          asm = Assembly.Load(providerdef.providerassembly);
         }
         catch (Exception) {
           throw ex;
