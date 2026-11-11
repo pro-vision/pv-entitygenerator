@@ -81,6 +81,6 @@ Additional attributes currently only supported for the 'Java5JPA' platform:
 ## Developing PVEntityGenerator
 
 Recommended environment for developing PVEntityGenerator:
-* [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/community/)
-* [Microsoft Visual Studio Installer Projects](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects) extension
+* [Visual Studio Community 2026](https://visualstudio.microsoft.com/vs/community/)
+* [Microsoft Visual Studio Installer Projects 2022](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects) extension
 * [Microsoft Access Database Engine 2010 Redistributable](https://www.microsoft.com/en-in/download/confirmation.aspx?id=13255) (32bit)
